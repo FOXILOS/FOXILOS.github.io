@@ -12,7 +12,7 @@
 
 header, footer {
   background-color: #333;
-  color: ##121212;
+  color: #121212;
   width: 100%;
 }
 
@@ -46,7 +46,7 @@ footer {
 .site-name {
   font-size: 18px;
   font-weight: bold;
-  color: #fff;
+  color: #121212;
 }
 
 #main-nav {
@@ -56,7 +56,7 @@ footer {
 
 #main-nav a {
   text-decoration: none;
-  color: #fff;
+  color: #121212;
   font-weight: bold;
 }
 
@@ -81,7 +81,7 @@ footer {
 }
 
 .content {
-  background: #e3e3e3;
+  background: #121212;
   padding: 20px;
   margin-bottom: 30px;
   text-align: center;
@@ -109,7 +109,7 @@ footer {
 
 .styled-table thead {
   background-color: #444;
-  color: #fff;
+  color: #121212;
 }
 
 .styled-table tbody tr:nth-child(odd) {
@@ -117,7 +117,7 @@ footer {
 }
 
 .styled-table tbody tr:nth-child(even) {
-  background-color: #fff;
+  background-color: #121212;
 }
 
 .box {
@@ -147,7 +147,7 @@ footer {
   padding: 12px;
   margin-top: 15px;
   background: #333;
-  color: #fff;
+  color: #121212;
   border: none;
   border-radius: 6px;
   font-size: 16px;

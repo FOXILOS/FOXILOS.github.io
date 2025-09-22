@@ -1,1 +1,229 @@
+#container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
 
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+header, footer {
+  background-color: #333;
+  color: #fff;
+  width: 100%;
+}
+
+header {
+  padding: 15px 0;
+}
+
+footer {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+}
+
+.logo-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img {
+  width: 80px;
+  height: auto;
+}
+
+.site-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+}
+
+#main-nav {
+  display: flex;
+  gap: 20px;
+}
+
+#main-nav a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+.intro {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: #ccc;
+  padding: 20px;
+  margin: 20px 0;
+  gap: 15px;
+}
+
+.intro img {
+  width: 200px;
+  height: 100px;
+}
+
+.intro-text {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.content {
+  background: #e3e3e3;
+  padding: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.download-img {
+  width: 150px;
+  height: auto;
+  display: block;
+  margin: 10px 0;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.styled-table th,
+.styled-table td {
+  border: 1px solid #999;
+  padding: 10px;
+  text-align: center;
+}
+
+.styled-table thead {
+  background-color: #444;
+  color: #fff;
+}
+
+.styled-table tbody tr:nth-child(odd) {
+  background-color: #eee;
+}
+
+.styled-table tbody tr:nth-child(even) {
+  background-color: #fff;
+}
+
+.box {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #000;
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.box img {
+  width: 80px;
+  height: auto;
+}
+
+.box span {
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+}
+
+#form {
+  background: #fff;
+  padding: 25px;
+  margin: 30px 0;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+#form label {
+  display: block;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #444;
+}
+
+#form input[type="text"],
+#form input[type="tel"],
+#form input[type="email"],
+#form input[type="date"],
+#form select,
+#form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#form input:focus,
+#form select:focus,
+#form textarea:focus {
+  border-color: #333;
+  box-shadow: 0 0 5px rgba(51, 51, 51, 0.3);
+  outline: none;
+}
+
+#form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+#form .form-group {
+  margin-bottom: 15px;
+}
+
+#form .form-group label {
+  font-weight: normal;
+  margin-right: 15px;
+}
+
+#form .checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: normal;
+}
+
+.btn-submit {
+  display: inline-block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.1s;
+}
+
+.btn-submit:hover {
+  background: #555;
+}
+
+.btn-submit:active {
+  transform: scale(0.98);
+}

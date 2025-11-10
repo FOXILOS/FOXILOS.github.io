@@ -1,1 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Адаптивная страница с Bootstrap</title>
+    <!-- Подключение Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключение внешнего CSS файла -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Навигационная панель -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Мой сайт</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">О нас</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Услуги</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Контакты</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Основной контент -->
+    <main class="container my-4">
+        <!-- Заголовок страницы -->
+        <header class="row mb-4">
+            <div class="col-12">
+                <h1 class="text-center">Добро пожаловать на наш сайт</h1>
+                <p class="lead text-center">Мы создаем качественные продукты для наших клиентов</p>
+            </div>
+        </header>
+
+        <!-- Сетка карточек -->
+        <section class="row g-4">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Продукт 1</h5>
+                        <p class="card-text">Описание продукта 1. Этот продукт обладает уникальными характеристиками.</p>
+                        <a href="#" class="btn btn-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Продукт 2</h5>
+                        <p class="card-text">Описание продукта 2. Этот продукт поможет решить ваши задачи.</p>
+                        <a href="#" class="btn btn-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Продукт 3</h5>
+                        <p class="card-text">Описание продукта 3. Этот продукт повысит вашу эффективность.</p>
+                        <a href="#" class="btn btn-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Продукт 4</h5>
+                        <p class="card-text">Описание продукта 4. Этот продукт соответствует всем стандартам качества.</p>
+                        <a href="#" class="btn btn-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Продукт 5</h5>
+                        <p class="card-text">Описание продукта 5. Этот продукт имеет множество положительных отзывов.</p>
+                        <a href="#" class="btn btn-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Продукт 6</h5>
+                        <p class="card-text">Описание продукта 6. Этот продукт поможет достичь ваших целей.</p>
+                        <a href="#" class="btn btn-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Дополнительная информация -->
+        <section class="row mt-5">
+            <div class="col-12 col-lg-8 mb-4 mb-lg-0">
+                <h2>О нашей компании</h2>
+                <p>Мы - команда профессионалов, работающая на рынке более 10 лет. Наша миссия - предоставлять качественные решения для наших клиентов.</p>
+                <p>Мы постоянно развиваемся и внедряем новые технологии, чтобы оставаться лидерами в своей области.</p>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="bg-light p-4 rounded">
+                    <h3>Контакты</h3>
+                    <p>Телефон: +7 (123) 456-78-90</p>
+                    <p>Email: info@example.com</p>
+                    <p>Адрес: г. Москва, ул. Примерная, д. 1</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Футер -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <p>&copy; 2025 Мой сайт. Остроухов Руслан. </p>
+                </div>
+                <div class="col-12 col-md-6 text-md-end">
+                    <a href="#" class="text-white me-3">Политика конфиденциальности</a>
+                    <a href="#" class="text-white">Условия использования</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Подключение скриптов Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

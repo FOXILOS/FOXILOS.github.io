@@ -1,1 +1,33 @@
+/* Дополнительные стили для кастомизации Bootstrap */
 
+/* Кастомизация карточек */
+.card {
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Кастомизация навигации */
+.navbar-brand {
+    font-weight: bold;
+}
+
+/* Дополнительные отступы для мобильных устройств */
+@media (max-width: 576px) {
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+/* Кастомизация футера */
+footer a {
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

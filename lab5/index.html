@@ -1,1 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор стоимости заказа</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .calculator {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9f7ef;
+            border: 1px solid #28a745;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            display: none;
+        }
+        .error {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>Калькулятор стоимости заказа</h2>
+        
+        <div class="form-group">
+            <label for="product">Выберите товар:</label>
+            <select id="product">
+                <option value="1500">Смартфон - 1 500 руб.</option>
+                <option value="800">Наушники - 800 руб.</option>
+                <option value="2500">Планшет - 2 500 руб.</option>
+                <option value="300">Мышь компьютерная - 300 руб.</option>
+                <option value="1200">Клавиатура - 1 200 руб.</option>
+            </select>
+        </div>
 
+        <div class="form-group">
+            <label for="quantity">Количество товара:</label>
+            <input type="number" id="quantity" min="1" value="1">
+            <div id="quantityError" class="error">Введите корректное количество (не менее 1)</div>
+        </div>
+
+        <button onclick="calculateTotal()">Рассчитать стоимость</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Массив товаров для динамического обновления
+        const products = [
+            { name: "Смартфон", price: 1500 },
+            { name: "Наушники", price: 800 },
+            { name: "Планшет", price: 2500 },
+            { name: "Мышь компьютерная", price: 300 },
+            { name: "Клавиатура", price: 1200 }
+        ];
+
+        function calculateTotal() {
+            const quantityInput = document.getElementById('quantity');
+            const productSelect = document.getElementById('product');
+            const resultDiv = document.getElementById('result');
+            const errorDiv = document.getElementById('quantityError');
+            
+            const quantity = parseInt(quantityInput.value);
+            const price = parseInt(productSelect.value);
+            
+            // Валидация ввода
+            if (isNaN(quantity) || quantity < 1) {
+                errorDiv.style.display = 'block';
+                resultDiv.style.display = 'none';
+                return;
+            }
+            
+            // Скрываем сообщение об ошибке, если оно было показано
+            errorDiv.style.display = 'none';
+            
+            // Расчет общей стоимости
+            const total = quantity * price;
+            
+            // Получаем название выбранного товара
+            const selectedOption = productSelect.options[productSelect.selectedIndex];
+            const productName = selectedOption.text.split(' - ')[0];
+            
+            // Форматируем числа с разделителями тысяч
+            const formattedTotal = total.toLocaleString('ru-RU');
+            const formattedPrice = price.toLocaleString('ru-RU');
+            
+            // Отображаем результат
+            resultDiv.innerHTML = `
+                <strong>Результат расчета:</strong><br>
+                Товар: ${productName}<br>
+                Цена за единицу: ${formattedPrice} руб.<br>
+                Количество: ${quantity} шт.<br>
+                <strong>Общая стоимость: ${formattedTotal} руб.</strong>
+            `;
+            resultDiv.style.display = 'block';
+        }
+
+        // Обработчик события для клавиши Enter
+        document.getElementById('quantity').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                calculateTotal();
+            }
+        });
+
+        // Валидация в реальном времени
+        document.getElementById('quantity').addEventListener('input', function() {
+            const quantity = parseInt(this.value);
+            const errorDiv = document.getElementById('quantityError');
+            
+            if (isNaN(quantity) || quantity < 1) {
+                errorDiv.style.display = 'block';
+            } else {
+                errorDiv.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

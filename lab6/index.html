@@ -1,1 +1,281 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор стоимости услуги</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .calculator {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #34495e;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        input[type="number"]:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .radio-option {
+            flex: 1;
+            min-width: 150px;
+        }
+        .radio-option input {
+            margin-right: 8px;
+        }
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            background-color: white;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .checkbox-group input {
+            width: 18px;
+            height: 18px;
+        }
+        .hidden {
+            display: none;
+        }
+        .result {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+            border-left: 4px solid #3498db;
+        }
+        .price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 10px 0;
+        }
+        .details {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .service-description {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Калькулятор стоимости услуги</h1>
+        
+        <div class="form-group">
+            <label for="quantity">Количество:</label>
+            <input type="number" id="quantity" min="1" value="1">
+        </div>
+        
+        <div class="form-group">
+            <label>Тип услуги:</label>
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="service1" name="service" value="basic" checked>
+                    <label for="service1">Базовая консультация</label>
+                    <div class="service-description">Простая консультация без дополнительных опций</div>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="service2" name="service" value="premium">
+                    <label for="service2">Премиум поддержка</label>
+                    <div class="service-description">Расширенная поддержка с выбором опций</div>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="service3" name="service" value="custom">
+                    <label for="service3">Индивидуальное решение</label>
+                    <div class="service-description">Персонализированная услуга с дополнительными свойствами</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="options-group" class="form-group hidden">
+            <label for="options">Опции услуги:</label>
+            <select id="options">
+                <option value="standard">Стандартная опция (без доплаты)</option>
+                <option value="express">Экспресс-обработка (+20%)</option>
+                <option value="priority">Приоритетная поддержка (+40%)</option>
+            </select>
+        </div>
+        
+        <div id="property-group" class="form-group hidden">
+            <div class="checkbox-group">
+                <input type="checkbox" id="property">
+                <label for="property">Включить расширенную функциональность (+25% к стоимости)</label>
+            </div>
+        </div>
+        
+        <div class="result">
+            <div>Итоговая стоимость:</div>
+            <div class="price" id="total-price">500 руб.</div>
+            <div class="details" id="price-details">1 × Базовая консультация (500 руб.)</div>
+        </div>
+    </div>
 
+    <script>
+        // Базовая стоимость для каждого типа услуги
+        const basePrices = {
+            basic: 500,
+            premium: 800,
+            custom: 1200
+        };
+
+        // Множители для опций
+        const optionMultipliers = {
+            standard: 1.0,
+            express: 1.2,
+            priority: 1.4
+        };
+
+        // DOM элементы
+        const quantityInput = document.getElementById('quantity');
+        const serviceRadios = document.querySelectorAll('input[name="service"]');
+        const optionsGroup = document.getElementById('options-group');
+        const optionsSelect = document.getElementById('options');
+        const propertyGroup = document.getElementById('property-group');
+        const propertyCheckbox = document.getElementById('property');
+        const totalPriceElement = document.getElementById('total-price');
+        const priceDetailsElement = document.getElementById('price-details');
+
+        // Функция для обновления интерфейса в зависимости от выбранного типа услуги
+        function updateInterface() {
+            const selectedService = document.querySelector('input[name="service"]:checked').value;
+            
+            // Скрываем или показываем опции и свойства в зависимости от типа услуги
+            if (selectedService === 'basic') {
+                // Первый тип: нет опций и свойств
+                optionsGroup.classList.add('hidden');
+                propertyGroup.classList.add('hidden');
+            } else if (selectedService === 'premium') {
+                // Второй тип: только опции
+                optionsGroup.classList.remove('hidden');
+                propertyGroup.classList.add('hidden');
+            } else if (selectedService === 'custom') {
+                // Третий тип: только свойство
+                optionsGroup.classList.add('hidden');
+                propertyGroup.classList.remove('hidden');
+            }
+            
+            // Пересчитываем стоимость
+            calculatePrice();
+        }
+
+        // Функция для расчета стоимости
+        function calculatePrice() {
+            const quantity = parseInt(quantityInput.value) || 1;
+            const selectedService = document.querySelector('input[name="service"]:checked').value;
+            const selectedOption = optionsSelect.value;
+            const hasProperty = propertyCheckbox.checked;
+            
+            // Базовая стоимость
+            let price = basePrices[selectedService];
+            
+            // Применяем множитель опции (если доступно)
+            if (selectedService === 'premium') {
+                price *= optionMultipliers[selectedOption];
+            }
+            
+            // Применяем доплату за свойство (если доступно)
+            if (selectedService === 'custom' && hasProperty) {
+                price *= 1.25;
+            }
+            
+            // Итоговая стоимость с учетом количества
+            const totalPrice = Math.round(price * quantity);
+            
+            // Обновляем отображение
+            totalPriceElement.textContent = `${totalPrice} руб.`;
+            
+            // Формируем детали расчета
+            let details = `${quantity} × `;
+            
+            // Название услуги
+            const serviceLabels = {
+                basic: 'Базовая консультация',
+                premium: 'Премиум поддержка',
+                custom: 'Индивидуальное решение'
+            };
+            details += `${serviceLabels[selectedService]}`;
+            
+            // Добавляем опцию, если применимо
+            if (selectedService === 'premium') {
+                const optionLabels = {
+                    standard: ' (стандартная)',
+                    express: ' (экспресс)',
+                    priority: ' (приоритетная)'
+                };
+                details += optionLabels[selectedOption];
+            }
+            
+            // Добавляем свойство, если применимо
+            if (selectedService === 'custom' && hasProperty) {
+                details += ' с расширенной функциональностью';
+            }
+            
+            details += ` (${Math.round(price)} руб.)`;
+            priceDetailsElement.textContent = details;
+        }
+
+        // Назначаем обработчики событий
+        quantityInput.addEventListener('input', calculatePrice);
+        
+        serviceRadios.forEach(radio => {
+            radio.addEventListener('change', updateInterface);
+        });
+        
+        optionsSelect.addEventListener('change', calculatePrice);
+        propertyCheckbox.addEventListener('change', calculatePrice);
+
+        // Инициализация при загрузке
+        updateInterface();
+    </script>
+</body>
+</html>
